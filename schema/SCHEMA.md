@@ -10,7 +10,8 @@
 スキーマ変更を伴わないデータ更新は通常運用として許容されますが、フィールドの
 追加・削除・型変更・意味の変更は必ずこのファイルに反映してください。
 
-- **バージョン**: v1(2026-09-13 初回収集分に基づき定義)
+- **バージョン**: v1.1(2026-09-14、`has_skills_dir`〜`mcp_servers_count`の
+  6フィールド追加。v1は2026-09-13初回収集分に基づき定義)
 
 ## `metrics.json`
 
@@ -48,11 +49,26 @@
 | `agent_doc_mentions_boundaries` | 0 or 1 | やって良い事/やってはいけない事(境界線)への言及があるか |
 | `agent_doc_mentions_pr_review` | 0 or 1 | PRレビューへの言及があるか |
 | `agent_doc_mentions_release_process` | 0 or 1 | リリースプロセスへの言及があるか |
+| `has_skills_dir` | 0 or 1 | 再利用可能なSkill定義(`.claude/skills/`等)の有無 |
+| `skills_count` | integer | Skill定義の数(`.claude/skills/`直下の子要素数) |
+| `has_custom_commands` | 0 or 1 | カスタムslash commands(`.claude/commands/`等)の有無 |
+| `custom_commands_count` | integer | カスタムcommand定義の数(`.claude/commands/`配下の`.md`ファイル数) |
+| `has_hooks_config` | 0 or 1 | `.claude/settings.json`の`hooks`キーが空でないか |
+| `mcp_servers_count` | integer | `.mcp.json`の`mcpServers`に定義されたMCPサーバー数 |
 
 補足:
 
 - `has_agent_instructions` が 0 のとき、`agent_doc_` プレフィックスを持つ全フィールドは 0 になる(指示ファイルが存在しないため)。
 - 0/1 の各フィールドは真偽値をintで表現したもの。
+- `agent_doc_mentions_repo_structure`〜`agent_doc_mentions_release_process`の
+  4フィールドはLLM分類(収集システム側で`claude -p`ヘッドレス実行を利用)
+  による判定であり、他の全フィールド(ファイル存在確認・キーワード一致・
+  JSON構造確認によるルールベース判定)と異なり、同一入力に対して実行の
+  たびに結果が変わりうる(非決定的)ことが実データで確認されている
+  (2026-09-13、同日2回の収集間で`agent_doc_mentions_boundaries`・
+  `agent_doc_mentions_pr_review`が変化した事例あり)。この4フィールドを
+  時系列で比較する際は、値の変化が実際の指示文書の変更ではなく分類の
+  ゆらぎに起因する可能性を考慮すること。
 
 ## `manifest.json`
 
