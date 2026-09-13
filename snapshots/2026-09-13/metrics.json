@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T07:11:53.898094+00:00",
+  "generated_at": "2026-09-13T09:32:39.942934+00:00",
   "repos": [
     {
       "repo": "remix-run/remix",
@@ -21,7 +21,13 @@
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 0,
-      "agent_doc_mentions_release_process": 1
+      "agent_doc_mentions_release_process": 1,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "astral-sh/ruff",
@@ -43,7 +49,13 @@
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 1,
-      "agent_doc_mentions_release_process": 1
+      "agent_doc_mentions_release_process": 1,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 1,
+      "mcp_servers_count": 0
     },
     {
       "repo": "getsentry/sentry",
@@ -64,8 +76,14 @@
       "agent_doc_mentions_tool_usage": 1,
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 1,
-      "agent_doc_mentions_pr_review": 0,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_pr_review": 1,
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 1,
+      "skills_count": 0,
+      "has_custom_commands": 1,
+      "custom_commands_count": 3,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 2
     },
     {
       "repo": "oven-sh/bun",
@@ -85,9 +103,15 @@
       "agent_doc_mentions_commit_convention": 0,
       "agent_doc_mentions_tool_usage": 0,
       "agent_doc_mentions_repo_structure": 1,
-      "agent_doc_mentions_boundaries": 0,
+      "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 1,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 1,
+      "skills_count": 9,
+      "has_custom_commands": 1,
+      "custom_commands_count": 6,
+      "has_hooks_config": 1,
+      "mcp_servers_count": 0
     },
     {
       "repo": "supabase/supabase",
@@ -109,7 +133,13 @@
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 0,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 1,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 1,
+      "mcp_servers_count": 1
     },
     {
       "repo": "vercel/next.js",
@@ -131,7 +161,13 @@
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 1,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 1,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "colinhacks/zod",
@@ -153,7 +189,13 @@
       "agent_doc_mentions_repo_structure": 0,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 1,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 1,
+      "skills_count": 2,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 1
     },
     {
       "repo": "nuxt/nuxt",
@@ -175,7 +217,13 @@
       "agent_doc_mentions_repo_structure": 0,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 1,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "sveltejs/svelte",
@@ -197,7 +245,13 @@
       "agent_doc_mentions_repo_structure": 0,
       "agent_doc_mentions_boundaries": 0,
       "agent_doc_mentions_pr_review": 1,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "apache/airflow",
@@ -219,7 +273,13 @@
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 1,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 1,
+      "skills_count": 4,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "microsoft/autogen",
@@ -241,7 +301,13 @@
       "agent_doc_mentions_repo_structure": 0,
       "agent_doc_mentions_boundaries": 0,
       "agent_doc_mentions_pr_review": 0,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "OpenHands/OpenHands",
@@ -263,7 +329,13 @@
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 1,
-      "agent_doc_mentions_release_process": 1
+      "agent_doc_mentions_release_process": 1,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "Significant-Gravitas/AutoGPT",
@@ -285,7 +357,13 @@
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 0,
       "agent_doc_mentions_pr_review": 1,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 1,
+      "skills_count": 10,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "browser-use/browser-use",
@@ -307,7 +385,13 @@
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 0,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "cline/cline",
@@ -329,7 +413,13 @@
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 0,
       "agent_doc_mentions_pr_review": 0,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 1,
+      "skills_count": 6,
+      "has_custom_commands": 1,
+      "custom_commands_count": 2,
+      "has_hooks_config": 1,
+      "mcp_servers_count": 0
     },
     {
       "repo": "continuedev/continue",
@@ -351,7 +441,13 @@
       "agent_doc_mentions_repo_structure": 0,
       "agent_doc_mentions_boundaries": 0,
       "agent_doc_mentions_pr_review": 0,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 1,
+      "skills_count": 1,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "crewAIInc/crewAI",
@@ -373,7 +469,13 @@
       "agent_doc_mentions_repo_structure": 0,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 0,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "langchain-ai/langchain",
@@ -395,7 +497,13 @@
       "agent_doc_mentions_repo_structure": 1,
       "agent_doc_mentions_boundaries": 1,
       "agent_doc_mentions_pr_review": 1,
-      "agent_doc_mentions_release_process": 1
+      "agent_doc_mentions_release_process": 1,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 2
     },
     {
       "repo": "Aider-AI/aider",
@@ -417,7 +525,13 @@
       "agent_doc_mentions_repo_structure": 0,
       "agent_doc_mentions_boundaries": 0,
       "agent_doc_mentions_pr_review": 0,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     },
     {
       "repo": "yoheinakajima/babyagi",
@@ -439,7 +553,13 @@
       "agent_doc_mentions_repo_structure": 0,
       "agent_doc_mentions_boundaries": 0,
       "agent_doc_mentions_pr_review": 0,
-      "agent_doc_mentions_release_process": 0
+      "agent_doc_mentions_release_process": 0,
+      "has_skills_dir": 0,
+      "skills_count": 0,
+      "has_custom_commands": 0,
+      "custom_commands_count": 0,
+      "has_hooks_config": 0,
+      "mcp_servers_count": 0
     }
   ]
 }
