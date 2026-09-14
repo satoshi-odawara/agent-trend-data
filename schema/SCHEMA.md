@@ -13,6 +13,11 @@
 - **バージョン**: v1.2(2026-09-14、`agent_doc_count`追加。v1.1は
   `has_skills_dir`〜`mcp_servers_count`の6フィールド追加、v1は
   2026-09-13初回収集分に基づき定義)
+- **同日再収集時のsnapshots不変性**: `snapshots/<date>/metrics.json`が
+  既に存在する場合、収集システムは上書きせずスキップし警告を出す
+  (`latest/metrics.json`のみ常に最新化される)。過去スナップショットの
+  不変性を保証するための挙動(2026-09-14、agent-trend-radar Issue #25で
+  確定・実装。同日2回の収集が実際に発生し、この挙動を確認済み)。
 
 ## `metrics.json`
 
