@@ -10,8 +10,9 @@
 スキーマ変更を伴わないデータ更新は通常運用として許容されますが、フィールドの
 追加・削除・型変更・意味の変更は必ずこのファイルに反映してください。
 
-- **バージョン**: v1.1(2026-09-14、`has_skills_dir`〜`mcp_servers_count`の
-  6フィールド追加。v1は2026-09-13初回収集分に基づき定義)
+- **バージョン**: v1.2(2026-09-14、`agent_doc_count`追加。v1.1は
+  `has_skills_dir`〜`mcp_servers_count`の6フィールド追加、v1は
+  2026-09-13初回収集分に基づき定義)
 
 ## `metrics.json`
 
@@ -37,7 +38,8 @@
 | `has_eval` | 0 or 1 | eval(評価)の仕組みの有無 |
 | `has_ci` | 0 or 1 | CI設定の有無 |
 | `has_security_policy` | 0 or 1 | セキュリティポリシー(SECURITY.md 等)の有無 |
-| `agent_doc_char_count` | integer | エージェント向け指示ファイルの文字数。`has_agent_instructions` が 0 の場合は 0 |
+| `agent_doc_count` | integer | 指示ファイル(CLAUDE.md/AGENTS.md)が見つかったディレクトリ数(重複排除、リポジトリ内の任意の深さを対象) |
+| `agent_doc_char_count` | integer | 代表文書1件分の文字数。ルート直下に指示ファイルがあればそれを使い、無ければ見つかった中で最も浅いディレクトリのものを使う(複数文書は合算しない)。`has_agent_instructions` が 0 の場合は 0 |
 | `agent_doc_heading_count` | integer | エージェント向け指示ファイル内の見出し数 |
 | `agent_doc_has_code_block` | 0 or 1 | エージェント向け指示ファイルにコードブロックを含むか |
 | `agent_doc_mentions_test` | 0 or 1 | テストへの言及があるか |
@@ -78,6 +80,15 @@
   内容は通常のコードスタイル規約で、委譲型の言及はなかった)。文書量は
   整備の手間を示すシグナルであり、統制の強さとは別軸。後者を評価する
   には実際に文書を読む必要がある(agent-trend-radar Issue #27参照)。
+- `agent_doc_count`はファイル数ではなく**ディレクトリ数**で数える。
+  CLAUDE.md・AGENTS.md・`.cursorrules`をルートに揃えているだけの
+  リポジトリ(例: colinhacks/zod)をファイル数で数えると誤って2以上
+  (モノレポ扱い)になってしまうため。`agent_doc_count > 1`は「指示文書が
+  複数箇所に分散している」ことの決定的シグナルで、モノレポ構成である
+  可能性の代理指標として使えるが、`agent_doc_count == 1`だからといって
+  モノレポでないとは限らない(指示文書自体を置いていないだけの可能性が
+  ある)。より正確なモノレポ判定(package.json workspaces等のワーク
+  スペース設定検知)は見送っている(agent-trend-radar Issue #29参照)。
 
 ## `manifest.json`
 
