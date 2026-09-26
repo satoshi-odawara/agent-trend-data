@@ -10,8 +10,9 @@
 スキーマ変更を伴わないデータ更新は通常運用として許容されますが、フィールドの
 追加・削除・型変更・意味の変更は必ずこのファイルに反映してください。
 
-- **バージョン**: v1.2(2026-09-14、`agent_doc_count`追加。v1.1は
-  `has_skills_dir`〜`mcp_servers_count`の6フィールド追加、v1は
+- **バージョン**: v1.3(2026-09-26、`agent_doc_llm_cache_key`追加、
+  トップレベルに`llm_classification`追加。v1.2は`agent_doc_count`追加、
+  v1.1は`has_skills_dir`〜`mcp_servers_count`の6フィールド追加、v1は
   2026-09-13初回収集分に基づき定義)
 - **同日再収集時のsnapshots不変性**: `snapshots/<date>/metrics.json`が
   既に存在する場合、収集システムは上書きせずスキップし警告を出す
@@ -27,6 +28,7 @@
 | --- | --- | --- |
 | `generated_at` | string (ISO 8601, UTC) | このスナップショットの生成日時 |
 | `repos` | array<object> | 収集対象リポジトリごとのメトリクス。各要素は下記「repos の各要素」を参照 |
+| `llm_classification` | object (省略可) | このスナップショットのLLM分類(`claude -p`)実行に関するメタデータ。存在しない場合は収集システムが未対応のバージョンで生成されたことを示す。フィールドは下記「llm_classification」を参照(agent-trend-radar Issue #30) |
 
 ## `repos` の各要素
 
@@ -62,6 +64,7 @@
 | `custom_commands_count` | integer | カスタムcommand定義の数(`.claude/commands/`配下の`.md`ファイル数) |
 | `has_hooks_config` | 0 or 1 | `.claude/settings.json`の`hooks`キーが空でないか |
 | `mcp_servers_count` | integer | `.mcp.json`の`mcpServers`に定義されたMCPサーバー数 |
+| `agent_doc_llm_cache_key` | string | LLM分類(`claude -p`)への入力(代表文書)のパス+blob SHAの組を連結した文字列。他のフィールドと異なり真偽値・整数ではなく文字列。指示ファイルが存在しない場合は空文字列 |
 
 補足:
 
@@ -75,7 +78,10 @@
   (2026-09-13、同日2回の収集間で`agent_doc_mentions_boundaries`・
   `agent_doc_mentions_pr_review`が変化した事例あり)。この4フィールドを
   時系列で比較する際は、値の変化が実際の指示文書の変更ではなく分類の
-  ゆらぎに起因する可能性を考慮すること。
+  ゆらぎに起因する可能性を考慮すること。**`agent_doc_llm_cache_key`が
+  前回のスナップショットと同じ値なのにこの4フィールドのいずれかが変化
+  していた場合、それは指示文書の変更ではなく分類のゆらぎによるものと
+  機械的に判別できる**(agent-trend-radar Issue #30)。
 - `agent_doc_char_count`・`agent_doc_heading_count`等の量的指標を
   「指示文書がどれだけ強く禁止・委譲しているか(統制の強さ)」の代理
   指標として使わないこと。実データで反例が確認されている
@@ -94,6 +100,17 @@
   モノレポでないとは限らない(指示文書自体を置いていないだけの可能性が
   ある)。より正確なモノレポ判定(package.json workspaces等のワーク
   スペース設定検知)は見送っている(agent-trend-radar Issue #29参照)。
+
+## `llm_classification`
+
+`metrics.json`トップレベルの`llm_classification`オブジェクトのフィールド。
+1回の収集実行内で全リポジトリ共通の値になるため、`repos`配下の各要素
+ではなくここに1回だけ記録する(agent-trend-radar Issue #30)。
+
+| フィールド | 型 | 説明 |
+| --- | --- | --- |
+| `claude_cli_version` | string | LLM分類に使用したclaude CLIのバージョン(`claude --version`の出力) |
+| `classification_prompt_hash` | string | LLM分類プロンプトのSHA256ハッシュ。プロンプト変更の追跡用 |
 
 ## `manifest.json`
 
