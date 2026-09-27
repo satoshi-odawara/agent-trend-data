@@ -10,8 +10,9 @@
 スキーマ変更を伴わないデータ更新は通常運用として許容されますが、フィールドの
 追加・削除・型変更・意味の変更は必ずこのファイルに反映してください。
 
-- **バージョン**: v1.3(2026-09-26、`agent_doc_llm_cache_key`追加、
-  トップレベルに`llm_classification`追加。v1.2は`agent_doc_count`追加、
+- **バージョン**: v1.4(2026-09-27、`ci_workflow_count`・
+  `agent_doc_code_block_count`追加。v1.3は`agent_doc_llm_cache_key`追加・
+  トップレベルに`llm_classification`追加、v1.2は`agent_doc_count`追加、
   v1.1は`has_skills_dir`〜`mcp_servers_count`の6フィールド追加、v1は
   2026-09-13初回収集分に基づき定義)
 - **同日再収集時のsnapshots不変性**: `snapshots/<date>/metrics.json`が
@@ -44,11 +45,13 @@
 | `has_tests` | 0 or 1 | テストコード・テストディレクトリの有無 |
 | `has_eval` | 0 or 1 | eval(評価)の仕組みの有無 |
 | `has_ci` | 0 or 1 | CI設定の有無 |
+| `ci_workflow_count` | integer | `.github/workflows/`配下のファイル数(CI投資の厚み) |
 | `has_security_policy` | 0 or 1 | セキュリティポリシー(SECURITY.md 等)の有無 |
 | `agent_doc_count` | integer | 指示ファイル(CLAUDE.md/AGENTS.md)が見つかったディレクトリ数(重複排除、リポジトリ内の任意の深さを対象) |
 | `agent_doc_char_count` | integer | 代表文書1件分の文字数。ルート直下に指示ファイルがあればそれを使い、無ければ見つかった中で最も浅いディレクトリのものを使う(複数文書は合算しない)。`has_agent_instructions` が 0 の場合は 0 |
 | `agent_doc_heading_count` | integer | エージェント向け指示ファイル内の見出し数 |
 | `agent_doc_has_code_block` | 0 or 1 | エージェント向け指示ファイルにコードブロックを含むか |
+| `agent_doc_code_block_count` | integer | 指示ファイル内の\`\`\`コードブロック数(具体性の厚み) |
 | `agent_doc_mentions_test` | 0 or 1 | テストへの言及があるか |
 | `agent_doc_mentions_lint` | 0 or 1 | lintへの言及があるか |
 | `agent_doc_mentions_security` | 0 or 1 | セキュリティへの言及があるか |
@@ -91,6 +94,12 @@
   内容は通常のコードスタイル規約で、委譲型の言及はなかった)。文書量は
   整備の手間を示すシグナルであり、統制の強さとは別軸。後者を評価する
   には実際に文書を読む必要がある(agent-trend-radar Issue #27参照)。
+- `has_ci`/`agent_doc_has_code_block`は天井/床効果によりsegment間の比較
+  材料として機能しない(28リポジトリ時点でhas_ciはadopter100%・
+  tool92%、agent_doc_has_code_blockは指示文書を持つリポジトリのうち
+  adopter50%・tool50%)。量的指標`ci_workflow_count`・
+  `agent_doc_code_block_count`(いずれも0〜60件超の分散を確認済み)を
+  代わりに使うこと(agent-trend-radar Issue #20)。
 - `agent_doc_count`はファイル数ではなく**ディレクトリ数**で数える。
   CLAUDE.md・AGENTS.md・`.cursorrules`をルートに揃えているだけの
   リポジトリ(例: colinhacks/zod)をファイル数で数えると誤って2以上
