@@ -10,11 +10,12 @@
 スキーマ変更を伴わないデータ更新は通常運用として許容されますが、フィールドの
 追加・削除・型変更・意味の変更は必ずこのファイルに反映してください。
 
-- **バージョン**: v1.4(2026-09-27、`ci_workflow_count`・
-  `agent_doc_code_block_count`追加。v1.3は`agent_doc_llm_cache_key`追加・
-  トップレベルに`llm_classification`追加、v1.2は`agent_doc_count`追加、
-  v1.1は`has_skills_dir`〜`mcp_servers_count`の6フィールド追加、v1は
-  2026-09-13初回収集分に基づき定義)
+- **バージョン**: v1.5(2026-09-28、`llm_classification`に`model_name`
+  追加。v1.4は`ci_workflow_count`・`agent_doc_code_block_count`追加。
+  v1.3は`agent_doc_llm_cache_key`追加・トップレベルに`llm_classification`
+  追加、v1.2は`agent_doc_count`追加、v1.1は`has_skills_dir`〜
+  `mcp_servers_count`の6フィールド追加、v1は2026-09-13初回収集分に
+  基づき定義)
 - **同日再収集時のsnapshots不変性**: `snapshots/<date>/metrics.json`が
   既に存在する場合、収集システムは上書きせずスキップし警告を出す
   (`latest/metrics.json`のみ常に最新化される)。過去スナップショットの
@@ -120,6 +121,7 @@
 | --- | --- | --- |
 | `claude_cli_version` | string | LLM分類に使用したclaude CLIのバージョン(`claude --version`の出力) |
 | `classification_prompt_hash` | string | LLM分類プロンプトのSHA256ハッシュ。プロンプト変更の追跡用 |
+| `model_name` | string (省略可) | LLM分類の実行時に実際に使用されたモデル名(分類呼び出しのJSON出力の`modelUsage`キーから取得、`--model`未指定のためCLIバージョンからは分からない)。1回の収集実行内で複数観測された場合は`", "`区切りで連結。1件もLLM分類が発生しなかった場合は省略される(agent-trend-radar Issue #35) |
 
 ## `manifest.json`
 
